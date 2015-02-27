@@ -72,7 +72,7 @@ public class DeviceHelper {
 				if (VENDOR_SKYWORTH.equalsIgnoreCase(vendor)) {
 					mVendor = vendor;
 				} else {
-					mVendor = "";// TODO è®¾ç½®ä¸ºç©ºä¼æåªäºå½±åï¼
+					mVendor = "";// TODO 设置为空会有哪些影响？
 				}
 			}
 		}
@@ -217,9 +217,9 @@ public class DeviceHelper {
 	private static final Object devIdLock = new Object();
 
 	private static void retriveFinalDevId(Context context) {
-		if (sDeviceId == null) {
+		if (sDeviceId == null || sDeviceId.trim().length() <= 0) {
 			synchronized (devIdLock) {
-				if (sDeviceId == null) {
+				if (sDeviceId == null || sDeviceId.trim().length() <= 0) {
 					String savedDeviceId = (String) Prefs.getInstance(context)
 							.get(Prefs.TYPE_STRING,
 									InternalUtils.ITEM_DEVICE_ID, null);
@@ -545,12 +545,3 @@ public class DeviceHelper {
 		return deviceType;
 	}
 }
-d.BRAND)) {
-			if ("Android on skyworth SDK"
-					.equalsIgnoreCase(android.os.Build.MODEL)) {
-				deviceType = DEVICE_MIPT_IKAN_A6;
-			}
-		} else {
-			String mode = getSysProperties("ro.product.model");
-			Log.d(TAG, "ro.product.model:" + mode);
-			if ("I71S".equalsIgnoreCase(mode

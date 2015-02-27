@@ -86,23 +86,3 @@ public class FileCacheUtils {
 		}
 	}
 }
-.getParentFile();
-		if (!parrentFile.exists()) {
-			parrentFile.mkdirs();
-		}
-		return cacheFile.getAbsolutePath();
-	}
-
-	@Deprecated
-	private static void splitFileInfo(String cacheFileName, String[] outFileInfo) {
-		int indexOfDot = cacheFileName.lastIndexOf(".");
-		if (indexOfDot > -1) {
-			outFileInfo[0] = cacheFileName.substring(0, indexOfDot);
-			outFileInfo[1] = cacheFileName.substring(indexOfDot + 1);
-		} else {
-			outFileInfo[0] = cacheFileName;
-			outFileInfo[1] = "";
-		}
-	}
-
-	pub

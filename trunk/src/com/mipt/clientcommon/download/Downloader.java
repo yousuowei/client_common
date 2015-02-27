@@ -68,28 +68,3 @@ public class Downloader {
 		INSTANCE = null;
 	}
 }
-ss) {
-				if (INSTANCE == null) {
-					INSTANCE = new Downloader(context);
-				}
-			}
-		}
-		return INSTANCE;
-	}
-
-	public void download(String url) {
-		download(url, null);
-	}
-
-	public void download(String url, DownloadCallback callback) {
-		download(url, null, callback);
-	}
-
-	public void download(String url, String md5, DownloadCallback callback) {
-		// new task and execute
-		DownloadTask tsk = new DownloadTask(context, url, md5, callback);
-		tsk.setDispatcher(dispatcher);
-		dispatcher.dispatch(tsk);
-	}
-
-	public void cancel(

@@ -127,6 +127,7 @@ class DownloadTask implements Runnable {
 					reportDownloadStatus(DownloadDispatcher.MSG_DOWNLOAD_DELETE);
 					break;
 				}
+				is = connection.getInputStream();
 				totalSize = parseFileSize(connection);
 				if (totalSize == downloadedSize) {
 					if (checkMd5(tempFile)) {
@@ -139,7 +140,6 @@ class DownloadTask implements Runnable {
 						continue;
 					}
 				}
-				is = connection.getInputStream();
 				save2File(is, bos);
 			} catch (Exception e) {
 				if (BuildConfig.DEBUG) {
@@ -284,10 +284,3 @@ class DownloadTask implements Runnable {
 		return md5.equalsIgnoreCase(fileMd5);
 	}
 }
-uccessIssue();
-			} else {
-				tempFile.delete();
-				reportDownloadStatus(DownloadDispatcher.MSG_DOWNLOAD_FAIL);
-			}
-		} else if (isCanceled()) {
-			reportDownloadStat

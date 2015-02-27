@@ -80,31 +80,3 @@ public class Prefs {
 	return ret;
     }
 }
-(key, (String) value).commit();
-	    break;
-	case TYPE_LONG:
-	    sharedPreference.edit().putLong(key, (Long) value).commit();
-	    break;
-	case TYPE_BOOLEAN:
-	    sharedPreference.edit().putBoolean(key, (Boolean) value).commit();
-	    break;
-	default:
-	    throw new IllegalArgumentException(
-		    "check your object type first !!!");
-	}
-    }
-
-    public Object get(int type, String key, Object defValue) {
-	Object ret = null;
-	switch (type) {
-	case TYPE_INT:
-	    ret = sharedPreference.getInt(key, (Integer) defValue);
-	    break;
-	case TYPE_FLOAT:
-	    ret = sharedPreference.getFloat(key, (Float) defValue);
-	    break;
-	case TYPE_STRING:
-	    ret = sharedPreference.getString(key, (String) defValue);
-	    break;
-	case TYPE_LONG:
-	    ret = sharedPreference.getLong(key, (Long) defValue

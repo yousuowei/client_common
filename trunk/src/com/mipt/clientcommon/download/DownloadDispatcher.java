@@ -260,21 +260,3 @@ class DownloadDispatcher {
 		}
 	}
 }
-sageObj) msg.obj;
-			obj.tsk.callback.onDownloadProgress(obj.downloadUrl, msg.arg1,
-					msg.arg2);
-		}
-
-		private void onDownloadSuccess(Message msg) {
-			MessageObj obj = (MessageObj) msg.obj;
-			removeTaskReference(obj.tsk);
-			obj.tsk.callback.onDownloadSuccess(obj.downloadUrl, obj.apkFile);
-		}
-
-		private void onDownloadFail(Message msg) {
-			MessageObj obj = (MessageObj) msg.obj;
-			removeTaskReference(obj.tsk);
-			obj.tsk.callback.onDownloadFail(obj.downloadUrl);
-		}
-
-		private void

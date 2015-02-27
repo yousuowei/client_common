@@ -73,7 +73,7 @@ public class DownloadUtils {
 	 * @param key
 	 * @return
 	 * @author: herry
-	 * @date: 2014å¹´8æ29æ¥ ä¸å11:29:56
+	 * @date: 2014年8月29日 上午11:29:56
 	 */
 
 	public static File createDownloadTempFile(Context context, String key) {
@@ -132,25 +132,3 @@ public class DownloadUtils {
 		}
 	}
 }
-ootPath, key + FORMAL_FILE_SURFIX);
-		if (!newFile.getParentFile().exists()) {
-			newFile.getParentFile().mkdirs();
-		}
-		return newFile;
-	}
-
-	public static void renameFile(File tempFile, File newFile) {
-		tempFile.renameTo(newFile);
-	}
-
-	public static File getDownloadFile(Context context, String key) {
-		String rootPath = getDownloadRootPath(context);
-		File rootDir = new File(rootPath);
-		File[] files = rootDir.listFiles(new FileSearchComp(key));
-		if (files == null || files.length <= 0) {
-			return null;
-		}
-		return files[0];
-	}
-
-	public static long 

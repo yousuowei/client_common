@@ -61,13 +61,16 @@ public class FileCacheTask {
 	 * 
 	 * @return
 	 * @author: herry
-	 * @date: 2014å¹´10æ29æ¥ ä¸å10:33:11
+	 * @date: 2014年10月29日 上午10:33:11
 	 */
 	public String execute() {
 		HttpURLConnection connection = null;
 		InputStream is = null;
 		BufferedOutputStream bos = null;
 		String retPath = null;
+		if (url == null || url.trim().length() <= 0) {
+			return retPath;
+		}
 		for (int i = 0; alive && is == null && i < retryTimes; i++) {
 			try {
 				if (FileCacheUtils.isFileCached(context, dirName, url)) {
@@ -209,9 +212,3 @@ public class FileCacheTask {
 		return null;
 	}
 }
-
-			String contentRange = connection.getHeaderField("Content-Range");
-			if (contentRange == null) {
-				throw new IllegalArgumentException("no content Range exist");
-			}
-			if (contentRange.trim

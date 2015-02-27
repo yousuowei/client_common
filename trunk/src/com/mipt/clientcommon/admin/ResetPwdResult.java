@@ -1,4 +1,4 @@
-package com.mipt.clientcommon;
+package com.mipt.clientcommon.admin;
 
 import java.io.InputStream;
 
@@ -9,20 +9,20 @@ import org.xmlpull.v1.XmlPullParserFactory;
 import android.content.Context;
 import android.util.Log;
 
-class AutoRegisterResult extends BaseResult {
-	private static final String TAG = "AutoRegisterResult";
+import com.mipt.clientcommon.BaseResult;
+import com.mipt.clientcommon.BuildConfig;
 
-	private static final String RESP_STATUS = "status";
-	private static final String RESP_TOKEN = "token";
+public class ResetPwdResult extends BaseResult {
+	private static final String TAG = "ResetPwdResult";
 
 	private String passport;
 
-	public AutoRegisterResult(Context context) {
-		super(context);
+	public String getPassport() {
+		return this.passport;
 	}
 
-	public String getPassport() {
-		return passport;
+	public ResetPwdResult(Context context) {
+		super(context);
 	}
 
 	@Override
@@ -39,17 +39,16 @@ class AutoRegisterResult extends BaseResult {
 			}
 			if (eventType == XmlPullParser.START_TAG) {
 				tag = xpp.getName();
-				if (tag.equals(RESP_STATUS)) {
-					String status = xpp.nextText();
-					if (status == null || Integer.valueOf(status) != 0) {
-						return false;
-					}
-				} else if (tag.equals(RESP_TOKEN)) {
+				if (tag.equals(AdminConstants.RESP_STATUS)) {
+					extractCode(xpp);
+				} else if (tag.equals(AdminConstants.RESP_MSG)) {
+					extractMsg(xpp);
+				} else if (tag.equals(AdminConstants.RESP_PASSPORT)) {
 					passport = xpp.nextText();
 					if (passport != null && passport.trim().length() > 0) {
 						// Utils.savePassport(context, url, passport);
 						if (BuildConfig.DEBUG) {
-							Log.d(TAG, "passport [from autoregister] : "
+							Log.d(TAG, "passport [from admin reset pwd] : "
 									+ passport + ",url : " + url);
 						}
 						break;
@@ -60,6 +59,6 @@ class AutoRegisterResult extends BaseResult {
 			}
 			eventType = xpp.next();
 		}
-		return true;
+		return statusCode == 0;
 	}
 }

@@ -182,20 +182,3 @@ class InternalUtils {
 		return url.substring(0, indexOfSlash);
 	}
 }
-return obj.toString();
-		} catch (Exception e) {
-			return "";
-		}
-	}
-
-	static InputStream unZIP(InputStream in) throws IOException {
-		InputStream out = null;
-		GZIPInputStream gzin = null;
-		ByteArrayOutputStream bytestream = null;
-		try {
-			gzin = new GZIPInputStream(in);
-			bytestream = new ByteArrayOutputStream();
-			byte[] buf = new byte[1024];
-			int nnumber;
-			while ((nnumber = gzin.read(buf, 0, buf.length)) != -1) {
-				bytest

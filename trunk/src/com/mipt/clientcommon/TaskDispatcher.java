@@ -64,24 +64,3 @@ public class TaskDispatcher {
 	return tsk;
     }
 }
-NCE = null;
-
-    protected OkUrlFactory urlFactory;
-
-    private TaskDispatcher() {
-	taskMap = new SparseArray<HttpTask>();
-	OkHttpClient client = new OkHttpClient();
-	client.setHostnameVerifier(new AllowAllHostnameVerifier());
-	try {
-	    client.setSslSocketFactory(TrustAllSSLSocketFactory.get());
-	} catch (Exception e) {
-	    e.printStackTrace();
-	}
-	urlFactory = new OkUrlFactory(client);
-    }
-
-    public static TaskDispatcher getInstance() {
-	if (INSTANCE == null) {
-	    synchronized (TaskDispatcher.class) {
-		if (INSTANCE == null) {
-		    IN

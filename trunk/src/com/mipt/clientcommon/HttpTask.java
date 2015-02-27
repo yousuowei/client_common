@@ -75,7 +75,8 @@ public class HttpTask implements Runnable {
 				if (requestResult) {
 					callback.onRequestSuccess(id, request.result);
 				} else {
-					callback.onRequestFail(id, "");
+					callback.onRequestFail(id, request.result.msg == null ? ""
+							: request.result.msg);
 				}
 			} else {
 				callback.onRequestCancel(id);
@@ -83,11 +84,3 @@ public class HttpTask implements Runnable {
 		}
 	};
 }
-patcher) {
-		this.dispatcher = dispatcher;
-		this.request.setDispatcher(dispatcher);
-	}
-
-	public void setCallback(HttpCallback callback) {
-		if (callback == null) {
-			throw new NullPointerException("callback should not be
